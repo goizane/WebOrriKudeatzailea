@@ -28,7 +28,7 @@ public class WebOrriLista {
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
 				// TODO
-				// Hemen kudeatu
+				// Hemen fitxategiko web-orri guztien URL-ak kargatu behar dira.
 			}
 			sarrera.close();
 		}
@@ -42,7 +42,8 @@ public class WebOrriLista {
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
 				// TODO
-				// Hemen kudeatu
+				// Hemen web-orri bakoitzak dauzkan estekak fitxategitik kargatu behar dira.
+				// Web-orri bakoitzaren URL-a pasatu beharko zaio metodo honi deitzerakoan, lista pertsonalizatua lortzeko.
 			}
 			sarrera.close();
 		}

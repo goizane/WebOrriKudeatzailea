@@ -28,7 +28,8 @@ public class GakoHitzLista {
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
 				// TODO
-				// Hemen kudeatu
+				// Hemen web-orri bakoitzak dauzkan gakoak fitxategitik kargatu behar dira.
+				// Web-orri bakoitzaren URL-a pasatu beharko zaio metodo honi deitzerakoan, lista pertsonalizatua lortzeko.
 			}
 			sarrera.close();
 		}
