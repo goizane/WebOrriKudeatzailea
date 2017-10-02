@@ -25,6 +25,14 @@ public class WebOrriLista {
 		this.lista.add(weborria);
 	}
 	
+	public WebOrri webOrriaBilatuIndizeaEmanda(String indizea) {
+		
+	}
+	
+	public WebOrri webOrriaBilatuURLaEmanda(String url) {
+		
+	}
+	
 	public void kargatuURL(String nomF) {
 		try {
 			Scanner sarrera = new Scanner(new FileReader("src/fitxategiak/smallindex"));

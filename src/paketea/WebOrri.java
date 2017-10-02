@@ -15,4 +15,8 @@ public class WebOrri {
 		estekak = new ArrayList<WebOrri>();
 		gakoak = new ArrayList<GakoHitz>();
 	}
+	
+	public void estekaBerriaTxertatu(WebOrri weborria) {
+		this.estekak.add(weborria);
+	}
 }
