@@ -21,14 +21,23 @@ public class WebOrriLista {
 		return WebOrriLista.nireWebOrriLista;
 	}
 	
+	public void webOrriBerriaTxertatu(WebOrri weborria) {
+		this.lista.add(weborria);
+	}
+	
 	public void kargatuURL(String nomF) {
 		try {
-			Scanner sarrera = new Scanner(new FileReader(nomF));
+			Scanner sarrera = new Scanner(new FileReader("src/fitxategiak/smallindex"));
 			String lerroa;
+			String url;
+			String indizea;
+			WebOrri weborria;
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
-				// TODO
-				// Hemen fitxategiko web-orri guztien URL-ak kargatu behar dira.
+				url = lerroa.split("\\s+")[0];
+				indizea = lerroa.split("\\s+")[1];
+				weborria = new WebOrri(url, indizea);
+				this.webOrriBerriaTxertatu(weborria);
 			}
 			sarrera.close();
 		}
