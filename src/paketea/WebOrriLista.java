@@ -54,7 +54,7 @@ public class WebOrriLista {
 	
 	public void kargatuEstekak(String nomF) {
 		try {
-			Scanner sarrera = new Scanner(new FileReader(nomF));
+			Scanner sarrera = new Scanner(new FileReader("src/fitxategiak/smallpId-arc"));
 			String lerroa;
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
