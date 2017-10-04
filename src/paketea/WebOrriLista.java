@@ -71,8 +71,12 @@ public class WebOrriLista {
 				int estekarenInd = Integer.parseInt(indizeak[1]);
 
 				WebOrri webOrri = this.webOrriaBilatuINDIZEA(webOrriarenInd);	//webOrria bilatzen du 
+				/*
 				webOrri.estekaGehitu(estekarenInd);
-
+				*/
+				WebOrri webOrriEsteka = this.webOrriaBilatuINDIZEA(estekarenInd);
+				webOrri.estekaGehitu(webOrriEsteka);
+				
 
 
 			}
@@ -113,6 +117,17 @@ public class WebOrriLista {
 			}
 		}
 		return egungoa;
+	}
+	
+	public void gakoHitzakTxertatu(String helbidea) {
+		WebOrri egungoa = null;
+		Iterator<WebOrri> it = this.getIterator();
+		GakoHitzLista gakoLista = null;
+		gakoLista = GakoHitzLista.getGakoHitzLista();
+		while (it.hasNext()) {
+			egungoa = it.next();
+			gakoLista.kargatuHitzak(helbidea, egungoa);
+		}
 	}
 
 

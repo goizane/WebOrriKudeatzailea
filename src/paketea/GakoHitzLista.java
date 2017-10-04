@@ -25,15 +25,17 @@ public class GakoHitzLista {
 	}
 	
 	// METODOAK
-	public void kargatuHitzak(String helbidea) {
+	public void kargatuHitzak(String helbidea, WebOrri weborria) {
 		try {
 			Scanner sarrera = new Scanner(new FileReader(helbidea));
-			String lerroa;
+			String hitza;
 			while (sarrera.hasNext()) {
-				lerroa = sarrera.nextLine();
-				// TODO
-				// Hemen web-orri bakoitzak dauzkan gakoak fitxategitik kargatu behar dira.
-				// Web-orri bakoitzaren URL-a pasatu beharko zaio metodo honi deitzerakoan, lista pertsonalizatua lortzeko.
+				hitza = sarrera.nextLine();
+				String url = weborria.getUrl();
+				if (url.indexOf(hitza) >= 0) {
+					GakoHitz gakoHitza = new GakoHitz(hitza);
+					weborria.gakoHitzBerriaTxertatu(gakoHitza);
+				}
 			}
 			sarrera.close();
 		}

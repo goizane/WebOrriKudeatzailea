@@ -36,6 +36,10 @@ public class WebOrri {
 		this.estekak.add(weborria);
 	}
 	
+	public void gakoHitzBerriaTxertatu(GakoHitz gakoHitza) {
+		this.gakoak.add(gakoHitza);
+	}
+	
 	
 	//**********METODO HAUEK PROBAK EGITEKO DIRA**********
 	
