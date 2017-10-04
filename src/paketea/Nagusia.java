@@ -6,8 +6,8 @@ public class Nagusia {
 		WebOrriLista lista=null;
 		lista = WebOrriLista.getWebOrriLista();
 		
-		String indexHandia = "/src/fitxategiak/index";
-		String estekakHandia = "/src/fitxategiak/pld-arc";
+		String indexHandia = "/src/fitxategiak/index.txt";
+		String estekakHandia = "/src/fitxategiak/pld-arc.txt";
 		String words = "/src/fitxategiak/words.txt";
 		lista.kargatuURL(indexHandia);
 		System.out.println("WEB ORRIAK KARGATUTA!!!");
@@ -17,8 +17,8 @@ public class Nagusia {
 		System.out.println("GAKO HITZAK KARGATUTA!!!");
 		
 		/*
-		String indexTxikia = "/src/fitxategiak/smallindex";
-		String estekakTxikia = "/src/fitxategiak/smallpld-arc";
+		String indexTxikia = "/src/fitxategiak/smallindex.txt";
+		String estekakTxikia = "/src/fitxategiak/smallpld-arc.txt";
 		lista.kargatuURL(indexTxikia);
 		System.out.println("WEB ORRIAK KARGATUTA!!!");
 		lista.kargatuEstekak(estekakTxikia);
