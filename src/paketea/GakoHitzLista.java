@@ -7,13 +7,16 @@ import java.util.Scanner;
 
 public class GakoHitzLista {
 	
+	// ATRIBUTUAK
 	private ArrayList<GakoHitz> lista;
 	private static GakoHitzLista nireGakoHitzLista = new GakoHitzLista();
 	
+	// ERAIKITZAILEA
 	private GakoHitzLista() {
 		this.lista = new ArrayList<GakoHitz>();
 	}
 	
+	// SINGLETON
 	public static GakoHitzLista getGakoHitzLista() {
 		if (GakoHitzLista.nireGakoHitzLista==null) {
 			GakoHitzLista.nireGakoHitzLista = new GakoHitzLista();
@@ -21,9 +24,10 @@ public class GakoHitzLista {
 		return GakoHitzLista.nireGakoHitzLista;
 	}
 	
-	public void kargatuHitzak(String nomF) {
+	// METODOAK
+	public void kargatuHitzak(String helbidea) {
 		try {
-			Scanner sarrera = new Scanner(new FileReader(nomF));
+			Scanner sarrera = new Scanner(new FileReader(helbidea));
 			String lerroa;
 			while (sarrera.hasNext()) {
 				lerroa = sarrera.nextLine();
