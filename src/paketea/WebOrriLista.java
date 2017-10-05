@@ -3,6 +3,7 @@ package paketea;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -128,6 +129,47 @@ public class WebOrriLista {
 			egungoa = it.next();
 			gakoLista.kargatuHitzak(helbidea, egungoa);
 		}
+	}
+	
+	// Web-orrien zerrenda fitxategitan gorde
+	public void webOrriListaGorde() {
+		//TODO
+		// Kargatu ditugun webOrrien lista eta esteka lista beste
+		// fitxategi berri batzuetan gorde
+	}
+	
+	// Web-orrien zerrenda alfabetikoki ordenatu (QuickSort)
+	public void webOrriListaOrdenatu(ArrayList<WebOrri> weborriLista) {
+		webOrriListaOrdenatu(weborriLista, 0, weborriLista.size()-1);
+	}
+	
+	private void webOrriListaOrdenatu(ArrayList<WebOrri> weborriLista, int hasiera, int bukaera) {
+		if (bukaera - hasiera > 0) {
+			int ind = zatiketa(weborriLista, hasiera, bukaera);
+			webOrriListaOrdenatu(weborriLista, hasiera, ind - 1);
+			webOrriListaOrdenatu(weborriLista, ind + 1, bukaera);
+		}
+	}
+	
+	private int zatiketa(ArrayList<WebOrri> weborriLista, int i, int f) {
+		// Lista ordenaturik datorrenez, QuickSort motelago bihurtzen da.
+		// Hori ekiditeko, hasierako indizea (i) trukatu dezakegu beste
+		// edozein posizioko indize batekin, SWAP eginez.
+		WebOrri weborria = weborriLista.get(i);
+		int ezker = i;
+		int eskuin = f;
+		while (ezker < eskuin) {
+			while (weborriLista.get(ezker).compareTo(weborria) <= 0 && ezker < eskuin)
+				ezker++;
+			while (weborriLista.get(eskuin).compareTo(weborria) > 0)
+				eskuin--;
+
+			if (ezker < eskuin)
+				Collections.swap(weborriLista, ezker, eskuin);
+		}
+		weborriLista.set(i, weborriLista.get(eskuin));
+		weborriLista.set(eskuin, weborria);
+		return eskuin;
 	}
 
 

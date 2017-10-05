@@ -40,6 +40,10 @@ public class WebOrri {
 		this.gakoak.add(gakoHitza);
 	}
 	
+	public int compareTo(WebOrri weborria) {
+		return this.url.compareTo(weborria.getUrl());
+	}
+
 	
 	//**********METODO HAUEK PROBAK EGITEKO DIRA**********
 	
