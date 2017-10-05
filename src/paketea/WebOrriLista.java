@@ -1,6 +1,8 @@
 package paketea;
 
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -132,10 +134,14 @@ public class WebOrriLista {
 	}
 	
 	// Web-orrien zerrenda fitxategitan gorde
-	public void webOrriListaGorde() {
-		//TODO
-		// Kargatu ditugun webOrrien lista eta esteka lista beste
-		// fitxategi berri batzuetan gorde
+	public void webOrriListaGorde() throws IOException {
+		FileWriter fw = new FileWriter("src/fitxategiak/berriaindex.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+		for (int i=0; i<this.lista.size(); i++) {
+			WebOrri weborria = this.lista.get(i);
+			bw.write(weborria.getUrl() + " " + weborria.getIndizea());
+			bw.newLine();
+		}
 	}
 	
 	// Web-orrien zerrenda alfabetikoki ordenatu (QuickSort)
@@ -154,7 +160,7 @@ public class WebOrriLista {
 	private int zatiketa(ArrayList<WebOrri> weborriLista, int i, int f) {
 		// Lista ordenaturik datorrenez, QuickSort motelago bihurtzen da.
 		// Hori ekiditeko, hasierako indizea (i) trukatu dezakegu beste
-		// edozein posizioko indize batekin, SWAP eginez.
+		// edozein posizioko indize batekin, SWAP eginez.		
 		WebOrri weborria = weborriLista.get(i);
 		int ezker = i;
 		int eskuin = f;
