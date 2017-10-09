@@ -29,7 +29,9 @@ public class WebOrriLista {
 	}
 	
 	// METODOAK
-	public void webOrriBerriaTxertatu(WebOrri weborria) {
+	public void webOrriBerriaTxertatu(String url) {
+		int indizea = this.lista.size();
+		WebOrri weborria = new WebOrri(url, indizea);
 		this.lista.add(weborria);
 	}
 	
@@ -120,6 +122,13 @@ public class WebOrriLista {
 			}
 		}
 		return egungoa;
+	}
+	
+	public boolean webOrriaBilatu(WebOrri weborria) {
+		//aurre: Web-orri oso bat parametro bezala
+		//post: Web-orri hori listan baldin badago,
+		//      "true" bueltatzen du. Bestela, "false".
+		return this.lista.contains(weborria);
 	}
 	
 	public void gakoHitzakTxertatu(String helbidea) {
