@@ -39,7 +39,9 @@ public class Nagusia {
 		}
 		
 		// 3. ERAGIKETA: Web-orri berri baten txertaketa
-		webOrriZerrenda.webOrriBerriaTxertatu("egela1718.ehu.eus");
+		String webOrriURL = "egela1718.ehu.eus";
+		webOrriZerrenda.webOrriBerriaTxertatu(webOrriURL);
+		System.out.println("Web-orri berri hau txertatu da: " + webOrriURL);
 		
 		// 4. ERAGIKETA: Web-orri batek estekatzen dituen web-orrien zerrenda bueltatu
 		System.out.println("Web-orri honek estekatzen dituen web-orrien zerrenda inprimatuko da: " + webOrriHiru.getUrl());
@@ -47,6 +49,7 @@ public class Nagusia {
 		
 		// 5. ERAGIKETA: Web-orrien zerrenda fitxategian gorde
 		webOrriZerrenda.webOrriListaGorde();
+		System.out.println("Fitxategi (txt) berri bat sortu da eta web-orri zerrenda bertan gorde da!");
 		
 		
 		
