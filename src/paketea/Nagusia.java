@@ -12,13 +12,13 @@ public class Nagusia {
 		
 		// 1. ERAGIKETA: Datuak kargatu fitxategietatik
 		// 1.1 Web-orriak kargatu URL-en fitxategitik
-		webOrriZerrenda.kargatuURL("/src/fitxategiak/smallindex.txt");
+		webOrriZerrenda.kargatuURL("src/fitxategiak/smallindex.txt");
 		System.out.println("WEB ORRIAK KARGATUTA!!!");
 		// 1.2 Web-orri bakoitzaren estekak kargatu esteken fitxategitik
-		webOrriZerrenda.kargatuEstekak("/src/fitxategiak/smallpld-arc.txt");
+		webOrriZerrenda.kargatuEstekak("src/fitxategiak/smallpld-arc.txt");
 		System.out.println("ESTEKAK KARGATUTA!!!");
 		// 1.3 Web-orri bakoitzaren gako-hitzak kargatu hiztegiaren fitxategitik
-		webOrriZerrenda.gakoHitzakTxertatu("/src/fitxategiak/words.txt");
+		webOrriZerrenda.gakoHitzakTxertatu("src/fitxategiak/words.txt");
 		System.out.println("GAKO HITZAK KARGATUTA!!!");
 		
 		// 2. ERAGIKETA: Web-orri baten bilaketa
