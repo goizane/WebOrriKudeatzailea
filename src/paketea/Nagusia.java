@@ -1,7 +1,6 @@
 package paketea;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Nagusia {
 	
@@ -48,9 +47,6 @@ public class Nagusia {
 		
 		// 5. ERAGIKETA: Web-orrien zerrenda fitxategian gorde
 		webOrriZerrenda.webOrriListaGorde();
-		
-		// 6. ERAGIKETA: Web-orrien zerrenda ordenatua lortu (alfabetikoki)
-		webOrriZerrenda.webOrriListaOrdenatu(webOrriZerrenda);
 		
 		
 		

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class WebOrriLista {
 	
@@ -32,6 +33,10 @@ public class WebOrriLista {
 	public void webOrriBerriaTxertatu(String url) {
 		int indizea = this.lista.size();
 		WebOrri weborria = new WebOrri(url, indizea);
+		this.lista.add(weborria);
+	}
+	
+	public void webOrriaGehitu(WebOrri weborria) {
 		this.lista.add(weborria);
 	}
 	
@@ -151,6 +156,7 @@ public class WebOrriLista {
 			bw.write(weborria.getUrl() + " " + weborria.getIndizea());
 			bw.newLine();
 		}
+		bw.close();
 	}
 	
 	// Web-orrien zerrenda alfabetikoki ordenatu (QuickSort)
@@ -169,7 +175,10 @@ public class WebOrriLista {
 	private int zatiketa(ArrayList<WebOrri> weborriLista, int i, int f) {
 		// Lista ordenaturik datorrenez, QuickSort motelago bihurtzen da.
 		// Hori ekiditeko, hasierako indizea (i) trukatu dezakegu beste
-		// edozein posizioko indize batekin, SWAP eginez.		
+		// edozein posizioko (random) indize batekin, SWAP eginez.
+		int randomIndizea = ThreadLocalRandom.current().nextInt(i, f + 1);
+		Collections.swap(weborriLista, i, randomIndizea);
+		
 		WebOrri weborria = weborriLista.get(i);
 		int ezker = i;
 		int eskuin = f;
