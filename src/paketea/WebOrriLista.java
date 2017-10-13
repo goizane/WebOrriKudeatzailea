@@ -176,9 +176,10 @@ public class WebOrriLista {
 	}
 
 
-	public void webOrriListaOrdenatu(ArrayList<WebOrri> weborriLista) {
+	public void webOrriListaOrdenatu(WebOrriLista weborriZerrenda) {
 		//aurre:
 		//post: Web-orrien zerrenda alfabetikoki ordenatu (QuickSort)
+		ArrayList<WebOrri> weborriLista = weborriZerrenda.lista;
 		webOrriListaOrdenatu(weborriLista, 0, weborriLista.size()-1);
 	}
 

@@ -71,6 +71,12 @@ public class Nagusia {
 		System.out.println("5) WEB-ORRIEN ESTEKEN ZERRENDA FITXATEGI BERRI BATEAN GORDE");
 		webOrriZerrenda.estekaListaGorde();
 		System.out.println("--> Fitxategi (txt) berri bat sortu da eta webOrri-en esteken zerrenda bertan gorde da!");
+		
+		// 6. ERAGIKETA: Web-orrien zerrenda ordenatua lortu alfabetikoki (QuickSort)
+		System.out.println("");
+		System.out.println("6) WEB-ORRIEN ZERRENDA ORDENATUA LORTU");
+		webOrriZerrenda.webOrriListaOrdenatu(webOrriZerrenda);
+		System.out.println("--> Web-orrien zerrenda ordenatu da!");
 
 
 
