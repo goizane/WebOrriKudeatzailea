@@ -46,6 +46,7 @@ public class GakoHitzLista {
 			sarrera.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
+		// N = GakoHitz kopurua fitxategian --> KOSTUA = O(N)
 	}
 	
 	public void webOrrienGakoHitzak(WebOrri weborri) {
@@ -60,5 +61,8 @@ public class GakoHitzLista {
 				weborri.gakoHitzBerriaTxertatu(egungoa);
 			}
 		}
+		// N = GakoHitz kopurua zerrendan
+		// M = WebOrri zehatz honek duen GakoHitz kopurua bere listan
+		// KOSTUA = O(NxM)
 	}
 }

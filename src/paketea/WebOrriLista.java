@@ -40,6 +40,7 @@ public class WebOrriLista {
 		}else{
 			System.out.println("--> " + url + " web-orria, listan txertatuta dago jada");
 		}
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
 	}
 
 
@@ -55,11 +56,12 @@ public class WebOrriLista {
 				String[] hitzak = lerroa.split(hutsunea);	//array bat sortuko da url[0] eta indizearekin[1]
 				String url = hitzak[0];
 				int indizea = Integer.parseInt(hitzak[1]);
-				lista.add(new WebOrri(url, indizea));	//lista beteko da web-orrien url eta indizeekin	
+				this.lista.add(new WebOrri(url, indizea));	//lista beteko da web-orrien url eta indizeekin	
 			}
 			sarrera.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
+		// N = WebOrri kopurua fitxategian --> KOSTUA = O(N)
 	}
 
 	public void kargatuEstekak(String nomF) {
@@ -82,6 +84,9 @@ public class WebOrriLista {
 			sarrera.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
+		// N = WebOrri kopurua zerrendan
+		// M = Esteka kopurua fitxategian
+		// KOSTUA = O(NxM)
 	}
 
 	private Iterator<WebOrri> getIterator() {
@@ -105,6 +110,7 @@ public class WebOrriLista {
 			}
 		}
 		return emaitza;
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
 	}
 
 	public WebOrri webOrriaBilatuINDIZEA(int pIndizea){
@@ -122,14 +128,16 @@ public class WebOrriLista {
 			}
 		}
 		return emaitza;
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
 	}
 
-	/*public boolean webOrriaBilatu(WebOrri weborria) {
-			//aurre: Web-orri oso bat parametro bezala
-			//post: Web-orri hori listan baldin badago,
-			//      "true" bueltatzen du. Bestela, "false".
-			return this.lista.contains(weborria);
-		}*/
+	public boolean webOrriaBilatu(WebOrri weborria) {
+		//aurre: Web-orri oso bat parametro bezala
+		//post: Web-orri hori listan baldin badago,
+		//      "true" bueltatzen du. Bestela, "false".
+		return this.lista.contains(weborria);
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
+	}
 
 	public void gakoHitzakTxertatu() {
 		//aurre:
@@ -139,8 +147,12 @@ public class WebOrriLista {
 		GakoHitzLista gakoLista = GakoHitzLista.getGakoHitzLista();
 		while (it.hasNext()) {
 			egungoa = it.next();
-			gakoLista.webOrrienGakoHitzak(egungoa);
+			gakoLista.webOrrienGakoHitzak(egungoa);  // Metodo honen kostua O(MxP) da
 		}
+		// N = WebOrri kopurua zerrendan
+		// M = GakoHitz kopurua zerrendan
+		// P = WebOrri zehatz batek duen GakoHitz kopurua bere listan
+		// KOSTUA = O(NxMxP)
 	}
 
 	// Web-orrien zerrenda fitxategi berri batean gorde
@@ -155,6 +167,7 @@ public class WebOrriLista {
 			bw.newLine();
 		}
 		bw.close();
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
 	}
 	
 	
@@ -173,6 +186,9 @@ public class WebOrriLista {
 			}
 		}
 		bw.close();
+		// N = WebOrri kopurua zerrendan
+		// M = WebOrri bakoitzak duen esteka kopurua bere listan
+		// KOSTUA = O(NxM)
 	}
 
 
@@ -181,6 +197,7 @@ public class WebOrriLista {
 		//post: Web-orrien zerrenda alfabetikoki ordenatu (QuickSort)
 		ArrayList<WebOrri> weborriLista = weborriZerrenda.lista;
 		webOrriListaOrdenatu(weborriLista, 0, weborriLista.size()-1);
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N logN) <-- QuickSort
 	}
 
 	private void webOrriListaOrdenatu(ArrayList<WebOrri> weborriLista, int hasiera, int bukaera) {
@@ -221,6 +238,9 @@ public class WebOrriLista {
 	public void inprimatuEstekak(int pInd){
 		WebOrri w = this.webOrriaBilatuINDIZEA(pInd);
 		w.inprimatuEstekak();
+		// N = WebOrri kopurua zerrendan
+		// M = WebOrri bakoitzak duen esteka kopurua bere listan
+		// KOSTUA = O(NxM)
 	}
 
 	public void inprimatuWebOrriak(){
@@ -232,5 +252,6 @@ public class WebOrriLista {
 			System.out.println(egungoa.getUrl() + " " + egungoa.getIndizea());
 
 		}
+		// N = WebOrri kopurua zerrendan --> KOSTUA = O(N)
 	}
 }

@@ -52,7 +52,8 @@ public class WebOrri {
 		}
 		if (!topatua){
 			this.estekak.add(pEsteka);
-		}	
+		}
+		// N = WebOrriak duen esteken zerrenda kopurua --> KOSTUA = O(N)
 	}
 	
 	public void estekaBerriaTxertatu(WebOrri weborria) {
@@ -74,6 +75,7 @@ public class WebOrri {
 		if (!topatua){
 			this.gakoak.add(gakoHitza);
 		}
+		// N = WebOrriak duen gakoHitzen zerrenda kopurua --> KOSTUA = O(N)
 	}
 	
 	public int compareTo(WebOrri weborria) {
@@ -103,6 +105,7 @@ public class WebOrri {
 			egungoa = it.next();
 			System.out.println(egungoa.getUrl());
 		}
+		// N = WebOrriak duen esteken zerrenda kopurua --> KOSTUA = O(N)
 	}
 
 	public void inprimatuGakoHitzak(){
@@ -112,5 +115,6 @@ public class WebOrri {
 			egungoa = it.next();
 			System.out.println(egungoa.getHitza());
 		}
+		// N = WebOrriak duen gakoHitzen zerrenda kopurua --> KOSTUA = O(N)
 	}
 }
