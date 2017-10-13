@@ -11,4 +11,9 @@ public class GakoHitz {
 	}
 	
 	// METODOAK
+	public String getHitza(){
+		//aurre:
+		//post: gako hitzaren izena bueltatuko du
+		return this.hitza;
+	}
 }

@@ -3,6 +3,7 @@ package paketea;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class GakoHitzLista {
@@ -25,20 +26,39 @@ public class GakoHitzLista {
 	}
 	
 	// METODOAK
-	public void kargatuHitzak(String helbidea, WebOrri weborria) {
+	private Iterator<GakoHitz> getIterator() {
+		//aurre:
+		//post: gako hitzen zerrendaren iteradorea itzuli
+		return this.lista.iterator();
+	}
+	
+	public void kargatuHitzak(String nomF) {
+		//aurre: gako hitzak dituen fitxategi baten izena 
+		//post: gako hitzak GakoHitzLista-n gordeko ditu 
 		try {
-			Scanner sarrera = new Scanner(new FileReader(helbidea));
+			Scanner sarrera = new Scanner(new FileReader(nomF));
 			String hitza;
 			while (sarrera.hasNext()) {
 				hitza = sarrera.nextLine();
-				String url = weborria.getUrl();
-				if (url.indexOf(hitza) >= 0) {
-					GakoHitz gakoHitza = new GakoHitz(hitza);
-					weborria.gakoHitzBerriaTxertatu(gakoHitza);
-				}
+				GakoHitz gakoHitza = new GakoHitz(hitza);
+				this.lista.add(gakoHitza);	
 			}
 			sarrera.close();
 		}
 		catch(IOException e) {e.printStackTrace();}
+	}
+	
+	public void webOrrienGakoHitzak(WebOrri weborri) {
+		//aurre: web-orri bat
+		//post: gako hitzak bilatuko ditu web-orriaren url-an, eta web-orriaren gakoen listan gehituko ditu 
+		String url = weborri.getUrl();
+		Iterator<GakoHitz> it = this.getIterator();
+		while (it.hasNext()) {
+			GakoHitz egungoa = it.next();
+			String hitza = egungoa.getHitza();
+			if (url.indexOf(hitza) >= 0){
+				weborri.gakoHitzBerriaTxertatu(egungoa);
+			}
+		}
 	}
 }
