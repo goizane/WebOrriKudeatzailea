@@ -82,7 +82,7 @@ public class Nagusia {
 
 		System.out.println("");
 		System.out.println("*************************FITXATEGI HANDIEKIN PROBAK*************************");
-		/*
+		
 		// 1. ERAGIKETA: Datuak kargatu fitxategietatik
 		System.out.println("1) DATUAK KARGATU FITXATEGIETATIK");
 		// 1.1 Web-orriak kargatu URL-en fitxategitik
@@ -94,6 +94,6 @@ public class Nagusia {
 		// 1.3 Web-orri bakoitzaren gako-hitzak kargatu hiztegiaren fitxategitik
 		gakoHitzZerrenda.kargatuHitzak("src/fitxategiak/words.txt");
 		System.out.println("--> Gako hitzak kargatuta!!!");
-		*/
+		
 	}
 }
