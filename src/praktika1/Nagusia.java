@@ -1,4 +1,4 @@
-package paketea;
+package praktika1;
 
 import java.io.IOException;
 
