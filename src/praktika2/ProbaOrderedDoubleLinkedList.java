@@ -1,6 +1,6 @@
 package praktika2;
 
-public class ProbaOrderedDoubleLinkedList {	
+public class ProbaOrderedDoubleLinkedList {
 		
 		public static void main(String[] args)  {
 			
@@ -16,7 +16,8 @@ public class ProbaOrderedDoubleLinkedList {
 
 			
 			System.out.print(" Lista ...............");
-			l.visualizarNodos();
+			// l.visualizarNodos();
+			l.adabegiakInprimatu();
 			System.out.println(" Elementu-kopurua: " + l.size());
 					
 			
@@ -41,7 +42,8 @@ public class ProbaOrderedDoubleLinkedList {
 
 			
 			System.out.print(" Lista ...............");
-			l2.visualizarNodos();
+			// l2.visualizarNodos();
+			l2.adabegiakInprimatu();
 			System.out.println(" Elementu-kopurua: " + l2.size());
 					
 			
