@@ -99,6 +99,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				Node<T> hurrengoa = unekoa.next;
 				aurrekoa.next = hurrengoa;
 				hurrengoa.prev = aurrekoa;
+				this.count--;
 				return unekoa.data;
 			}
 		}
