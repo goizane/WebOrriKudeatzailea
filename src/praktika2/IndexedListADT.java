@@ -3,7 +3,7 @@
  * @author Dr. Chase
  * @version 1.0, 08/13/08
  */
-package praktika2;public interface IndexedListADT<T> extends ListADT<T>{   /**  
+package praktika2;// Hau ez da erabili behar!public interface IndexedListADT<T> extends ListADT<T>{   /**  
     * Inserts the specified element at the specified index. 
     * 
     * @param index   the index into the array to which the element is to be
