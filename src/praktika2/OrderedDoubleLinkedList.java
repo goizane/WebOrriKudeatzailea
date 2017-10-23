@@ -5,10 +5,15 @@ public class OrderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements O
 	public void add(T elem){
 	// Elementua gehitu dagokion posizioan zerrenda ordenatu batean
 	// Aurrebaldintza: Zerrenda txikitik handira dago ordenatuta.
-		
-		// KODEA OSATU ETA KOSTUA KALKULATU
-		
-		
+		Node<T> berria = new Node<T>(elem);
+		if (isEmpty()) {
+			first = berria;
+		}
+		else {
+			// Aquí insertar el nuevo nodo en su lugar ordenado!
+			//TODO
+		}
+		this.count++;
 		// KOSTUA
 	}
 }
