@@ -25,9 +25,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeFirst() {
-	// listako lehen elementua kendu da
-	// Aurrebaldintza: zerrenda ez da hutsa
+	// Listako lehen elementua kendu da.
+	// Aurrebaldintza: zerrenda ez da hutsa.
+	// Posbaldintza: Lehen elementua ezabatu eta bere datua itzuliko du.
 		Node<T> lehenengoa = first;
+		// Zerrendak elementu bakarra badu:
 		if (first.next==null) {
 			first = null;
 			this.count--;
@@ -46,10 +48,12 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeLast() {
-	// listako azken elementua kendu da
-	// Aurrebaldintza: zerrenda ez da hutsa
+	// Listako azken elementua kendu da.
+	// Aurrebaldintza: zerrenda ez da hutsa.
+	// Posbaldintza: Azken elementua ezabatu eta bere datua itzuliko du.
+		Node<T> lehenengoa = first;
+		// Zerrendak elementu bakarra badu:
 		if (first.next==null) {
-			Node<T> lehenengoa = first;
 			first = null;
 			this.count--;
 			return lehenengoa.data;
@@ -68,39 +72,42 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T remove(T elem) {
 	// Aurrebaldintza: zerrenda ez da hutsa
-	// Balio hori listan baldin badago, bere lehen agerpena ezabatuko dut. Kendutako objektuaren erreferentzia 
-    // bueltatuko du (null ez baldin badago)
+	// Postbaldintza: Balio hori listan baldin badago, bere lehen agerpena
+	//                ezabatuko dut. Kendutako objektuaren erreferentzia 
+    //                bueltatuko du (null ez baldin badago).
+		
+		// Zerrendak elementu bakarra badu:
 		if (first.next==null) {
+			// Elementu hori ezabatu behar duguna bada:
 			if (this.contains(elem)==true) {
 				Node<T> lehenengoa = first;
 				first = null;
 				this.count--;
 				return lehenengoa.data;
 			}
+			// Ezabatu behar dugun elementua ez badago:
 			else {
 				return null;
 			}
 		}
+		// Zerrendak elementu bat baino gehiago baditu:
 		else {
-			boolean aurkituta = false;
-			Node<T> unekoa = first;
-			Iterator<T> it = iterator();
-			while ((it.hasNext()) && (aurkituta==false)) {
-				unekoa.data = it.next();
-				if (unekoa.data.equals(elem)) {
-					aurkituta = true;
+			// Zerrendan ezabatu nahi dugun elementua badago:
+			if (this.contains(elem)==true) {
+				Node<T> unekoa = first;
+				while (unekoa.data.equals(elem)==false) {
+					unekoa = unekoa.next;
 				}
-			}
-			if (aurkituta==false) {
-				return null;
-			}
-			else {
 				Node<T> aurrekoa = unekoa.prev;
 				Node<T> hurrengoa = unekoa.next;
 				aurrekoa.next = hurrengoa;
 				hurrengoa.prev = aurrekoa;
 				this.count--;
 				return unekoa.data;
+			}
+			// Zerrendan ezabatu nahi dugun elementua ez badago:
+			else {
+				return null;
 			}
 		}
 		// N = Zerrendako elementu kopurua --> KOSTUA = O(N)
@@ -123,39 +130,56 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public boolean contains(T elem) {
 	// Egiazkoa bueltatuko du aurkituz gero, eta false bestela
 		boolean aurkituta = false;
+		// Zerrenda hutsa bada:
 		if (isEmpty()) {
-			aurkituta = false;
+			return false;
 		}
-		T unekoa;
-		Iterator<T> it = iterator();
-		while ((it.hasNext()) && (aurkituta==false)) {
-			unekoa = it.next();
-			if (unekoa.equals(elem)) {
-				aurkituta = true;
+		// Zerrenda hutsa ez bada:
+		else {
+			T unekoDatua;
+			Iterator<T> it = iterator();
+			while ((it.hasNext()) && (aurkituta==false)) {
+				unekoDatua = it.next();
+				if (unekoDatua.equals(elem)) {
+					aurkituta = true;
+				}
 			}
+			return aurkituta;
 		}
-		return aurkituta;
 		// N = Zerrendako elementu kopurua --> KOSTUA = O(N)
 	}
 
 	public T find(T elem) {
-	// Elementua bueltatuko du aurkituz gero, eta null bestela
+	// Posbaldintza: Elementua bueltatuko du aurkituz gero, eta null bestela
 		boolean aurkituta = false;
+		// Zerrenda hutsa bada:
 		if (isEmpty()) {
 			return null;
 		}
-		T unekoa = null;
-		Iterator<T> it = iterator();
-		while ((it.hasNext()) && (aurkituta==false)) {
-			unekoa = it.next();
-			if (unekoa.equals(elem)) {
-				aurkituta = true;
+		// Zerrendak elementu bakarra badu:
+		else if (first.next==null) {
+			if (first.data.equals(elem)) {
+				return first.data;
+			}
+			else {
+				return null;
 			}
 		}
-		if (aurkituta==false) {
-			unekoa = null;
+		// Zerrendak elementu bat baino gehiago baditu:
+		else {
+			T unekoDatua = null;
+			Iterator<T> it = iterator();
+			while ((it.hasNext()) && (aurkituta==false)) {
+				unekoDatua = it.next();
+				if (unekoDatua.equals(elem)) {
+					aurkituta = true;
+				}
+			}
+			if (aurkituta==false) {
+				unekoDatua = null;
+			}
+			return unekoDatua;
 		}
-		return unekoa;
 		// N = Zerrendako elementu kopurua --> KOSTUA = O(N)
 	}
 
