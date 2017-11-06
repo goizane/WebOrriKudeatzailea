@@ -19,7 +19,8 @@ public class ProbaOrderedDoubleLinkedList {
 			// l.visualizarNodos();
 			l.adabegiakInprimatu();
 			System.out.println(" Elementu-kopurua: " + l.size());
-					
+			
+			
 			
 			System.out.println("Proba Find ...............");
 			System.out.println("20? " + l.find(20));

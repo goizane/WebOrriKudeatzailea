@@ -3,32 +3,32 @@ package praktika2;
 public class OrderedDoubleLinkedList<T extends Comparable<T>> extends DoubleLinkedList<T> implements OrderedListADT<T> {
 	
 	public void add(T elem){
-	// Elementua gehitu dagokion posizioan zerrenda ordenatu batean.
 	// Aurrebaldintza: Zerrenda txikitik handira dago ordenatuta.
-	// Posbaldintza: Zerrendan nodoren bat baldin badado elementuaren berdina dena,
-	//				 elementua honen ondoan txertatuko da, aurretik edo atzetik.
+	// Posbaldintza: Elementua gehitu dagokion posizioan zerrenda ordenatu batean.
+	//				 Zerrendan "elem" elemetuaren berdina badago, nodo horren aurretik edo atzetik txertatuto da.
 		Node<T> berria = new Node<T>(elem);
 		// Zerrenda hutsa bada:
 		if (isEmpty()) {
 			first = berria;
+			first.next = berria;
+			first.prev = berria;
 		}
-		// Zerrendak elementu bakarra badu:
-		else if (first.next==null) {
-			// Elementua lehenengo nodo-ko datua bainoa handiago edo berdina bada:
-			if (elem.compareTo(first.data)>=0) {
+		//Zerrenda elementu bakarra badu
+		else if (first.next == first){
+			if (elem.compareTo(first.data)>=0){
 				first.next = berria;
 				first.prev = berria;
 				berria.next = first;
 				berria.prev = first;
-			}
-			// Elementua lehenengo nodo-ko datua baino txikiago bada:
-			else {
-				first.next = berria;
-				first.prev = berria;
+				
+				
+			}else{
 				berria.next = first;
 				berria.prev = first;
+				first.prev = berria;
+				first.next = berria;
 				first = berria;
-			}
+			}	
 		}
 		// Zerrendak elementu bat baino gehiago baditu:
 		else {
@@ -66,6 +66,7 @@ public class OrderedDoubleLinkedList<T extends Comparable<T>> extends DoubleLink
 			}
 		}
 		this.count++;
+		
 		// N = Zerrendako elementu kopurua --> KOSTUA = O(N)
 	}
 }
