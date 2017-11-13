@@ -14,18 +14,18 @@ public class Graph {
 	
 	
 	public void grafoaSortu(WebOrriLista listaWeb) {
-		// Post: web guztien zerrendatik grafoa sortzen du
-		//       Adabegiak web orriak dira 
+		// POST: Web guztien zerrendatik grafoa sortzen du.
+		//       Adabegiak web orriak dira.
 		
-            // 1. pausoa: “th” bete
-            // KODEA OSATU
-
-            // 2. pausoa: “keys” bete
+		// 1. pausoa: “th” bete
+		// KODEA OSATU
+		
+		// 2. pausoa: “keys” bete
 		keys = new String[th.size()];
 		for (String k: th.keySet()) keys[th.get(k)] = k;
-
-            // 3. pausoa: “adjList” bete
-            // KODEA OSATU
+		
+		// 3. pausoa: “adjList” bete
+		// KODEA OSATU
 	}
 	
 	
@@ -46,8 +46,12 @@ public class Graph {
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()];
-
-                 // KODEA OSATU
+		
+		while ((!aurkitua)&&(aztertuGabeak.isEmpty())) {
+			
+		}
+		
+		// KODEA OSATU
 		
 		return aurkitua;
 	}
