@@ -89,7 +89,7 @@ public class WebOrriLista {
 		// KOSTUA = O(NxM)
 	}
 
-	private Iterator<WebOrri> getIterator() {
+	public Iterator<WebOrri> getIterator() {
 		//aurre:
 		//post: web-orriak zeharkatzeko iteradorea bueltatzen du
 		return this.lista.iterator();
