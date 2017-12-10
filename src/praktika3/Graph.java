@@ -1,4 +1,4 @@
-package praktika3;
+﻿package praktika3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,38 +15,52 @@ public class Graph {
 	ArrayList<Integer>[] adjList; // loturak
 	
 	
-	public void grafoaSortu(WebOrriLista listaWeb) {
+	
+	public void grafoaSortu() {
 		// POST: Web guztien zerrendatik grafoa sortzen du.
 		//       Adabegiak web orriak dira.
 		
 		WebOrriLista lista = WebOrriLista.getWebOrriLista();
+		lista.kargatuURL("src/fitxategiak/smallindex.txt");
+		lista.kargatuEstekak("src/fitxategiak/smallpld-arc.txt");
 		Iterator<WebOrri> it = lista.getIterator();
 		
 		// 1. pausoa: “th” bete
 		WebOrri egungoa;
+		th = new HashMap<String, Integer>();
 		while (it.hasNext()) {
 			egungoa = it.next();
 			th.put(egungoa.getUrl(), egungoa.getIndizea());
 		}
+		//KOSTUA: O(N)
 		
 		// 2. pausoa: “keys” bete
 		keys = new String[th.size()];
 		for (String k: th.keySet()) keys[th.get(k)] = k;
+		//KOSTUA: O(N)
 		
 		// 3. pausoa: “adjList” bete
+		
 		int i = 0;
 		int indize;
 		ArrayList<Integer> lista2 = null;
+		it =  lista.getIterator();
+		adjList = new ArrayList [th.size()];
 		while (it.hasNext()) {
 			egungoa = it.next();
 			lista2 = new ArrayList<Integer>();
-			while (egungoa.getEstekak().iterator().hasNext()) {
-				indize = egungoa.getEstekak().iterator().next().getIndizea();
+			Iterator<WebOrri> it2 = egungoa.getEstekak().iterator();
+			while (it2.hasNext()) {
+				WebOrri e = it2.next();
+				indize = e.getIndizea();
 				lista2.add(indize);
 			}
+			//adjList = new ArrayList<Integer>[th.size()];
+			adjList[i]= new ArrayList<Integer>();
 			adjList[i] = lista2;
 			i++;
 		}
+		//KOSTUA: O(NxM)
 	}
 	
 	
@@ -61,9 +75,12 @@ public class Graph {
 	
 	
 	public boolean erlazionatuta(String a1, String a2) {
+		//Postbaldintza: True bueltatuko du a1 weborritik a2 weborrira bidea baldin badago, bestela false.
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
 		int pos1 = th.get(a1);
+		//System.out.println("1.esteka: "+ pos1);
 		int pos2 = th.get(a2);
+		//System.out.println("2.esteka: "+ pos2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()];
 		aztertuGabeak.add(pos1);
@@ -81,6 +98,7 @@ public class Graph {
 				}
 			}
 		}
+		System.out.println(aurkitua);
 		return aurkitua;
 	}
 }
