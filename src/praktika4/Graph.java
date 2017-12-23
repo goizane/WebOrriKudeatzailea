@@ -14,8 +14,6 @@ public class Graph {
 	String[] keys;                // kodearen bidez bilatzeko
 	ArrayList<Integer>[] adjList; // loturak
 	
-	
-	
 	public void grafoaSortu() {
 		// POST: Web guztien zerrendatik grafoa sortzen du.
 		//       Adabegiak web orriak dira.
@@ -40,7 +38,6 @@ public class Graph {
 		//KOSTUA: O(N)
 		
 		// 3. pausoa: “adjList” bete
-		
 		int i = 0;
 		int indize;
 		ArrayList<Integer> lista2 = null;
@@ -63,7 +60,6 @@ public class Graph {
 		//KOSTUA: O(NxM)
 	}
 	
-	
 	public void print() {
 	   for (int i = 0; i < adjList.length; i++){
 		System.out.print("Element: " + i + " " + keys[i] + " --> ");
@@ -72,7 +68,6 @@ public class Graph {
 		System.out.println();
 	   }
 	}
-	
 	
 	public boolean erlazionatuta(String a1, String a2) {
 		//Postbaldintza: True bueltatuko du a1 weborritik a2 weborrira bidea baldin badago, bestela false.
@@ -102,20 +97,56 @@ public class Graph {
 		return aurkitua;
 	}
 	
-	
 	public HashMap<String, Double> pageRank() {
-		// POST: Emaitza web-orri zerrendaren web-orri bakoitzaren
-		// pageRank algoritmoaren balioa da
-		
+		// POSTBALDINTZA: Emaitza web-orri zerrendaren web-orri
+		//                bakoitzaren pageRank algoritmoaren balioa da
 		HashMap<String,Double> emaitza = new HashMap<String,Double>();
-		// Hasierako probabilitatea: 1/nodoKopurua
-		Double balioa = (double) (1/th.size());
+		HashMap<String,Double> aurreko = new HashMap<String,Double>();
+		Double nodoKop = (double) th.size();
+		Double hasierakoBalioa = (1/nodoKop);
+		for (String k : th.keySet()) {
+			emaitza.put(k, hasierakoBalioa);
+		}
+		Double kenketenBatuketa = 100.0;
+		while (kenketenBatuketa >= 0.0001) {
+			Double dampingFactor = 0.85;
+			Double hasierakoZatiketa = (1.0-dampingFactor)/nodoKop;
+			for (String k : th.keySet()) {
+				Double batuPageRank = 0.0;
+				for (Integer balio : th.values()) {
+					for (Integer a : adjList[balio]) {
+						Double lotura = new Double(th.get(a).SIZE);
+						Double pageRank = emaitza.get(a);
+						batuPageRank = batuPageRank + (pageRank/lotura);
+					}
+					batuPageRank = dampingFactor * batuPageRank;
+				}
+				hasierakoZatiketa = hasierakoZatiketa + batuPageRank;
+				aurreko.put(k, emaitza.get(k));
+				emaitza.put(k, hasierakoZatiketa);
+			}
+			Double kenketa = 0.0;
+			kenketenBatuketa = 0.0;
+			for (String k: th.keySet()) {
+				kenketa = emaitza.get(k) - aurreko.get(k);
+				kenketenBatuketa = kenketenBatuketa + Math.abs(kenketa);
+			}
+		}
+		return emaitza;
 	}
 	
+	public void pantailaratuPageRank(HashMap<String, Double> pageRank) {
+		for (String k: pageRank.keySet()){
+			System.out.println("Key: " + k + "  ||  Balioa: " + pageRank.get(k));
+		}
+	}
 	
-	public ArrayList<String> bilatzailea(String gakoHitz, HashMap<String, Double> pageRanks) {
-		// POST: Emaitza emandako gako-hitza duten web-orrien zerrenda da, bere
-		// pageRank-aren arabera handienetik txikienera ordenatuta (hau da,
-		// lehenengo posizioetan pageRank handiena duten web-orriak agertuko dira)
+	public ArrayList<String> bilatzailea(String gakoHitz, HashMap<String, Double> pageRank) {
+		// POSTBALDINTZA: Emaitza emandako gako-hitza duten web-orrien zerrenda da, bere
+		//                pageRank-aren arabera handienetik txikienera ordenatuta (hau da,
+		//                lehenengo posizioetan pageRank handiena duten web-orriak agertuko dira)
+		ArrayList<String> emaitza;
+		
+		return emaitza;
 	}
 }
