@@ -37,6 +37,12 @@ public class WebOrri {
 		//post: web-orriaren esteka zerrenda itzuliko du
 		return this.estekak;
 	}
+	
+	public ArrayList<GakoHitz> getGakoak() {
+		//aurre:
+		//post: web-orriaren gako-hitz zerrenda itzuliko du
+		return this.gakoak;
+	}
 
 	public void estekaGehitu(WebOrri pEsteka) {
 		//aurre: esteka bat (web-orria) parametro bezala

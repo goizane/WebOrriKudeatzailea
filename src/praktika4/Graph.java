@@ -1,10 +1,15 @@
 ﻿package praktika4;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import praktika1.WebOrri;
 import praktika1.WebOrriLista;
 
@@ -102,30 +107,28 @@ public class Graph {
 		//                bakoitzaren pageRank algoritmoaren balioa da
 		HashMap<String,Double> emaitza = new HashMap<String,Double>();
 		HashMap<String,Double> aurreko = new HashMap<String,Double>();
-		Double nodoKop = (double) th.size();
-		Double hasierakoBalioa = (1/nodoKop);
+		double nodoKop = (double) th.size();
+		double hasierakoBalioa = (1/nodoKop);
 		for (String k : th.keySet()) {
 			emaitza.put(k, hasierakoBalioa);
 		}
-		Double kenketenBatuketa = 100.0;
+		double kenketenBatuketa = 100.0;
 		while (kenketenBatuketa >= 0.0001) {
-			Double dampingFactor = 0.85;
-			Double hasierakoZatiketa = (1.0-dampingFactor)/nodoKop;
+			double dampingFactor = 0.85;
+			double hasierakoZatiketa = (1.0-dampingFactor)/nodoKop;
 			for (String k : th.keySet()) {
-				Double batuPageRank = 0.0;
-				for (Integer balio : th.values()) {
-					for (Integer a : adjList[balio]) {
-						Double lotura = new Double(th.get(a).SIZE);
-						Double pageRank = emaitza.get(a);
-						batuPageRank = batuPageRank + (pageRank/lotura);
-					}
+				double batuPageRank = 0.0;
+				for (int balio : th.values()) {
+					double lotura = th.get(balio).SIZE;
+					double pageRank = emaitza.get(k);
+					batuPageRank = batuPageRank + (pageRank/lotura);
 					batuPageRank = dampingFactor * batuPageRank;
 				}
 				hasierakoZatiketa = hasierakoZatiketa + batuPageRank;
 				aurreko.put(k, emaitza.get(k));
 				emaitza.put(k, hasierakoZatiketa);
 			}
-			Double kenketa = 0.0;
+			double kenketa = 0.0;
 			kenketenBatuketa = 0.0;
 			for (String k: th.keySet()) {
 				kenketa = emaitza.get(k) - aurreko.get(k);
@@ -136,6 +139,7 @@ public class Graph {
 	}
 	
 	public void pantailaratuPageRank(HashMap<String, Double> pageRank) {
+		System.out.println("Page Rank-ak pantailaratu:");
 		for (String k: pageRank.keySet()){
 			System.out.println("Key: " + k + "  ||  Balioa: " + pageRank.get(k));
 		}
@@ -145,8 +149,59 @@ public class Graph {
 		// POSTBALDINTZA: Emaitza emandako gako-hitza duten web-orrien zerrenda da, bere
 		//                pageRank-aren arabera handienetik txikienera ordenatuta (hau da,
 		//                lehenengo posizioetan pageRank handiena duten web-orriak agertuko dira)
-		ArrayList<String> emaitza;
-		
+		ArrayList<String> emaitza = new ArrayList<String>();
+		HashMap<String, Double> emaitzaHash = new HashMap<String, Double>();
+		for (String key : pageRank.keySet()) {
+			WebOrri webOrria = WebOrriLista.getWebOrriLista().webOrriaBilatuURL(key);
+			if (webOrria.getGakoak().contains(gakoHitz)) {
+				emaitzaHash.put(key, pageRank.get(key));
+			}
+		}
+		HashMap<String, Double> emaitzaHashOrdenatuta = ordenatuPageRank(emaitzaHash);
+		for (String k : emaitzaHashOrdenatuta.keySet()) {
+			emaitza.add(k);
+		}
 		return emaitza;
+	}
+	
+	public ArrayList<String> bilatzailea(String gakoHitz1, String gakoHitz2, HashMap<String,Double> pageRanks) {
+		// POSTBALDINTZA: Emaitza emandako gako-hitzak dituzten web-orrien zerrenda da,
+		//			      bere pagerank-aren arabera handienetik txikienera ordenatuta (hau da,
+		//			      lehenengo posizioetan pagerank handiena duten web-orriak agertuko dira)
+		ArrayList<String> emaitza = new ArrayList<String>();
+		HashMap<String, Double> emaitzaHash = new HashMap<String, Double>();
+		for (String key : pageRanks.keySet()) {
+			WebOrri webOrria = WebOrriLista.getWebOrriLista().webOrriaBilatuURL(key);
+			if ((webOrria.getGakoak().contains(gakoHitz1)) && (webOrria.getGakoak().contains(gakoHitz2))) {
+				emaitzaHash.put(key, pageRanks.get(key));
+			}
+		}
+		HashMap<String, Double> emaitzaHashOrdenatuta = ordenatuPageRank(emaitzaHash);
+		for (String k : emaitzaHashOrdenatuta.keySet()) {
+			emaitza.add(k);
+		}
+		return emaitza;
+	}
+	
+	public void pantailaratuBilatzailea(ArrayList<String> webOrriak) {
+		System.out.println("GakoHitza edo GakoHitz biak duten WebOrri zerrenda PageRank-aren arabera ordenaturik pantailaratu:");
+		for (int i=0; i<webOrriak.size(); i++) {
+			System.out.println("--->  " + webOrriak.get(i));
+		}
+	}
+	
+	public static HashMap<String, Double> ordenatuPageRank(HashMap<String, Double> map) {
+		List<Map.Entry<String, Double>> list = new LinkedList<Map.Entry<String, Double>>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+			@Override
+			public int compare(Map.Entry<String, Double> value1, Map.Entry<String, Double> value2) {
+				return (value1.getValue()).compareTo(value2.getValue());
+			}
+		});
+		HashMap<String, Double> result = new LinkedHashMap<String, Double>();
+		for (Map.Entry<String, Double> entry : list) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
 	}
 }
